@@ -1,12 +1,12 @@
 from abc import ABC, abstractmethod
-from typing import Any, Awaitable, Callable, Dict, TypeVar
+from typing import Any, Awaitable, Callable, Dict, TypeVar, Generic
 
 from aiogram.types import TelegramObject
 
-T = TypeVar("T")
+MiddlewareUpdate = TypeVar("MiddlewareUpdate", bound=TelegramObject)
 
 
-class BaseMiddleware(ABC):
+class BaseMiddleware(Generic[MiddlewareUpdate], ABC):
     """
     Generic middleware class
     """
@@ -14,8 +14,8 @@ class BaseMiddleware(ABC):
     @abstractmethod
     async def __call__(
         self,
-        handler: Callable[[TelegramObject, Dict[str, Any]], Awaitable[Any]],
-        event: TelegramObject,
+        handler: Callable[[MiddlewareUpdate, Dict[str, Any]], Awaitable[Any]],
+        event: MiddlewareUpdate,
         data: Dict[str, Any],
     ) -> Any:  # pragma: no cover
         """
