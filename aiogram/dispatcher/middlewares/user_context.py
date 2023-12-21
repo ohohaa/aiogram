@@ -8,7 +8,7 @@ EVENT_CHAT_KEY = "event_chat"
 EVENT_THREAD_ID_KEY = "event_thread_id"
 
 
-class UserContextMiddleware(BaseMiddleware):
+class UserContextMiddleware(BaseMiddleware[TelegramObject]):
     async def __call__(
         self,
         handler: Callable[[TelegramObject, Dict[str, Any]], Awaitable[Any]],

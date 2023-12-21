@@ -11,7 +11,7 @@ if TYPE_CHECKING:
     from ..router import Router
 
 
-class ErrorsMiddleware(BaseMiddleware):
+class ErrorsMiddleware(BaseMiddleware[TelegramObject]):
     def __init__(self, router: Router):
         self.router = router
 
