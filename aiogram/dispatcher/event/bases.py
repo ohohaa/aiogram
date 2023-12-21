@@ -9,7 +9,7 @@ from ..middlewares.base import BaseMiddleware
 MiddlewareEventType = TypeVar("MiddlewareEventType", bound=TelegramObject)
 NextMiddlewareType = Callable[[MiddlewareEventType, Dict[str, Any]], Awaitable[Any]]
 MiddlewareType = Union[
-    BaseMiddleware,
+    BaseMiddleware[MiddlewareEventType],
     Callable[
         [NextMiddlewareType[MiddlewareEventType], MiddlewareEventType, Dict[str, Any]],
         Awaitable[Any],
