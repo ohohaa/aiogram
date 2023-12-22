@@ -13,7 +13,7 @@ from aiogram.fsm.strategy import FSMStrategy, apply_strategy
 from aiogram.types import TelegramObject
 
 
-class FSMContextMiddleware(BaseMiddleware):
+class FSMContextMiddleware(BaseMiddleware[TelegramObject]):
     def __init__(
         self,
         storage: BaseStorage,
